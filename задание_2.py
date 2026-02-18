@@ -33,15 +33,15 @@ class Lecturer(Mentor):
 
 class Reviewer(Mentor):
 
-        # выставлять студентам оценки за домашние задания могут только эксперты
-        def rate_hw(self, student, course, grade):
-            if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
-                if course in student.grades:
-                    student.grades[course] += [grade]
-                else:
-                    student.grades[course] = [grade]
+    # выставлять студентам оценки за домашние задания могут только эксперты
+    def rate_hw(self, student, course, grade):
+        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
+            if course in student.grades:
+                student.grades[course] += [grade]
             else:
-                return 'Ошибка'
+                student.grades[course] = [grade]
+        else:
+            return 'Ошибка'
 
 # Проверка оценивания лекторов
 lecturer = Lecturer('Иван', 'Иванов')
